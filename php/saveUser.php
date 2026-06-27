@@ -16,7 +16,7 @@ $redirectError = "../html/createAccount.html";
 // ==========================================
 
 // Verificar si existe el usuario
-$check = "SELECT * FROM users WHERE user='$user'";
+$check = "SELECT * FROM user WHERE username ='$user'";
 $result = $conn->query($check);
 
 if ($result->num_rows > 0) {
@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
 }
 
 // Crear usuario
-$sql = "INSERT INTO users (user, password, role) VALUES ('$user','$password','$role')";
+$sql = "INSERT INTO user (username, pass, user_type) VALUES ('$user','$password','$role')";
 
 if ($conn->query($sql)) {
     // ÉXITO: Va directo al index

@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$bd = "ds3_proyecto";
+$bd = "airlines_db";
 
 $conn = new mysqli($host,$user,$password,$bd);
 if($conn ->connect_error){
