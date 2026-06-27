@@ -1,0 +1,24 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="log">
+        <form method="post" action="../php/saveUser.php">
+            Usuario: <input type="text" name="user" required> <br> <br>
+            Contraseña: <input type="password" name="password" required> <br> <br> 
+            
+            <input type="submit" value="Iniciar sesión">
+
+
+
+        </form>
+    </div>
+</body>
+</html>

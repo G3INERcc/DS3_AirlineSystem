@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #ffffff;
+}
+.menu__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+.menu__logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.menu {
+    background-color: #ffffff; /* morado moderno */
+    color: rgb(0, 0, 0);
+    height: 70px;
+}
+.menu__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+.menu__links {
+    display: flex;
+    height: 100%;
+}
+.menu__item {
+    list-style: none;
+    position: relative;
+    height: 100%;
+    --clip: polygon(0 0,100% 0,100% 0,0 0);
+}
+.menu__item:hover {
+    --clip: polygon(0 0,100% 0,100% 100%,0 100%);
+}
+.menu__link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    height: 100%;
+    transition: background 0.2s;
+}
+.menu__link:hover {
+    background-color: #7c3aed;
+}
+.menu__nesting {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    width: max-content;
+    list-style: none;
+    background-color: #5b21b6;
+    clip-path: var(--clip);
+    transition: clip-path 0.3s ease;
+}
+.menu__link--inside {
+    display: block;
+    padding: 12px 25px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.menu__link--inside:hover {
+    background-color: #a855f7;
+    color: black;
+}
+#title {
+    text-align: center;
+    margin-top: 60px;
+    color: #333;
+    font-size: 2rem;
+}
+.info {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.info {
+
+    background:
+        linear-gradient(to right,
+            rgba(99, 102, 241, 0.6),   /* morado */
+            rgba(168, 85, 247, 0.4),   /* morado rosado */
+            rgba(244, 114, 182, 0.2)   /* rosado claro */
+        ),
+        url("../img/volcan.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.contenedor {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido {
+    flex: 1; /* empuja el footer hacia abajo */
+}
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}

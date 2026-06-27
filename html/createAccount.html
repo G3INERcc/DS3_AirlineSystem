@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Login</title>
+    
+    <style>
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            display: none; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <header> 
+        <span>Galei Airlines</span> 
+    </header>
+
+    <div class="container">
+        <form class="form" method="POST" action="../php/saveUser.php">
+            <p class="form-title"> Crear cuenta </p>
+
+            <div id="mensaje-error" class="alert-error"></div>
+
+            <div class="input-container">
+                <input type="text" name="user" placeholder="Usuario" required>
+            </div>
+
+            <div class="input-container">
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+            
+            <button class="submit" type="submit"> Crear </button>
+        </form>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // CONTROL DE MOSTRAR ERRORES EN LA INTERFAZ
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorType = urlParams.get('error');
+            const errorBox = document.getElementById('mensaje-error');
+
+            if (errorType === 'exists') {
+                errorBox.innerText = "El nombre de usuario ya está en uso.";
+                errorBox.style.display = 'block';
+            } else if (errorType === 'generic') {
+                errorBox.innerText = "Hubo un error al crear la cuenta. Inténtalo de nuevo.";
+                errorBox.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
