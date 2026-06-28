@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include("../php/conection.php");
+include("../php/connection.php");
 
 // Seguridad
 if (

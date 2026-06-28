@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include("conection.php");
+include("connection.php");
 
 // Capturar datos
 $id = $_POST['id'] ?? '';
