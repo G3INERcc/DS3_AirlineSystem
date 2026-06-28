@@ -98,6 +98,11 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
                             </a>
                         </li>
 
+                        <li class="menu__inside">
+                            <a href="#" class="menu__link menu__link--inside">
+                                Gestion de Tiquetes
+                            </a>
+                        </li>
                     </ul>
 
                 </li>

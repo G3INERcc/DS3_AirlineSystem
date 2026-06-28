@@ -13,7 +13,7 @@ if (
 }
 
 // =======================
-// EDITAR USUARIO
+// ACTUALIZAR
 // =======================
 
 if (
@@ -22,34 +22,26 @@ if (
 ) {
 
     $userOriginalID = $_POST['userOriginalID'];
-
     $newID = $_POST['newID'];
-
     $userNewName = $_POST['userNewName'];
-
     $newPassword = $_POST['newPassword'];
-
     $newRole = $_POST['newRole'];
 
     // Validar ID repetido
     $checkID =
-        "SELECT id
-        FROM user
+        "SELECT id FROM user
         WHERE id='$newID'
         AND id<>'$userOriginalID'";
 
-    $resultID =
-        $conn->query($checkID);
+    $resultID = $conn->query($checkID);
 
     // Validar username repetido
     $checkUser =
-        "SELECT id
-        FROM user
+        "SELECT id FROM user
         WHERE username='$userNewName'
         AND id<>'$userOriginalID'";
 
-    $resultUser =
-        $conn->query($checkUser);
+    $resultUser = $conn->query($checkUser);
 
     if (
         $resultID->num_rows == 0 &&
@@ -59,19 +51,17 @@ if (
         $update =
             "UPDATE user
             SET
-            id='$newID',
-            username='$userNewName',
-            pass='$newPassword',
-            user_type='$newRole'
+                id='$newID',
+                username='$userNewName',
+                pass='$newPassword',
+                user_type='$newRole'
             WHERE id='$userOriginalID'";
 
         $conn->query($update);
-
     }
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
-
 }
 
 // =======================
@@ -93,7 +83,6 @@ if (
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
-
 }
 
 // =======================
@@ -120,11 +109,9 @@ if (
     $query =
         "SELECT *
         FROM user";
-
 }
 
-$result =
-    $conn->query($query);
+$result = $conn->query($query);
 
 ?>
 
@@ -138,9 +125,7 @@ $result =
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Gestión de Usuarios
-    </title>
+    <title>Gestión de Usuarios</title>
 
     <link rel="stylesheet" href="../css/userManager.css">
 
@@ -149,7 +134,13 @@ $result =
 <body>
 
     <header>
+
         <span>Galei Airlines</span>
+
+        <a href="../php/menu.php">
+            <img src="../assets/2.svg" alt="">
+        </a>
+
     </header>
 
     <main class="container">
@@ -168,6 +159,12 @@ $result =
 
                 </button>
 
+                <button type="button" class="btn-search" onclick="window.location.href='../html/createUserAdm.html'">
+
+                    Crear Usuario
+
+                </button>
+
             </form>
 
         </div>
@@ -183,15 +180,10 @@ $result =
                         <tr>
 
                             <th>ID</th>
-
                             <th>Usuario</th>
-
                             <th>Contraseña</th>
-
                             <th>Rol</th>
-
                             <th>Guardar</th>
-
                             <th>Eliminar</th>
 
                         </tr>
@@ -202,21 +194,15 @@ $result =
 
                         <?php
 
-                        if (
-                            $result &&
-                            $result->num_rows > 0
-                        ) {
+                        if ($result && $result->num_rows > 0) {
 
-                            while (
-                                $row =
-                                $result->fetch_assoc()
-                            ) {
+                            while ($row = $result->fetch_assoc()) {
 
                                 ?>
 
                                 <tr>
 
-                                    <form method="POST">
+                                    <form method="POST" onsubmit="return confirm('¿Guardar cambios?');">
 
                                         <input type="hidden" name="userOriginalID" value="<?= $row['id'] ?>">
 
@@ -235,8 +221,8 @@ $result =
 
                                         <td>
 
-                                            <input type="text" name="newPassword" value="<?= htmlspecialchars($row['pass']) ?>"
-                                                class="input-table-pass">
+                                            <input type="text" name="newPassword"
+                                                value="<?= htmlspecialchars($row['pass']) ?>" class="input-table-pass">
 
                                         </td>
 
@@ -244,37 +230,17 @@ $result =
 
                                             <select name="newRole" class="select-role">
 
-                                                <option value="administrador" <?=
-
-                                                    $row['user_type'] == "administrador"
-
-                                                    ?
-
-                                                    "selected"
-
-                                                    :
-
-                                                    ""
-
-                                                    ?>>
+                                                <option value="administrador" <?= $row['user_type'] == "administrador"
+                                                    ? "selected"
+                                                    : "" ?>>
 
                                                     Administrador
 
                                                 </option>
 
-                                                <option value="colaborador" <?=
-
-                                                    $row['user_type'] == "colaborador"
-
-                                                    ?
-
-                                                    "selected"
-
-                                                    :
-
-                                                    ""
-
-                                                    ?>>
+                                                <option value="colaborador" <?= $row['user_type'] == "colaborador"
+                                                    ? "selected"
+                                                    : "" ?>>
 
                                                     Colaborador
 
@@ -353,3 +319,4 @@ $result =
 </body>
 
 </html>
+```
