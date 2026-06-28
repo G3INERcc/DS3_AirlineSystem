@@ -1,41 +1,90 @@
 <?php
+
 session_start();
 include("conection.php");
 
-// 1. CAPTURAR DATOS DEL FORMULARIO
+// Capturar datos
+$id = $_POST['id'] ?? '';
 $user = $_POST['user'] ?? '';
 $password = $_POST['password'] ?? '';
-$role = "Colaborador";
 
-// Rutas fijas de redirección
+$role = "colaborador";
+
+// rutas
 $redirectSuccess = "../index.html";
 $redirectError = "../html/createAccount.html";
 
-// ==========================================
-// 2. LÓGICA DE BASE DE DATOS
-// ==========================================
+// ============================
+// VALIDAR ID
+// ============================
 
-// Verificar si existe el usuario
-$check = "SELECT * FROM user WHERE username ='$user'";
-$result = $conn->query($check);
+$checkID =
+    "SELECT id
+FROM user
+WHERE id='$id'";
 
-if ($result->num_rows > 0) {
-    header("Location: " . $redirectError . "?error=exists");
+$resultID =
+    $conn->query($checkID);
+
+if ($resultID->num_rows > 0) {
+
+    header(
+        "Location: " . $redirectError . "?error=id"
+    );
+
     exit();
+
 }
 
-// Crear usuario
-$sql = "INSERT INTO user (username, pass, user_type) VALUES ('$user','$password','$role')";
+// ============================
+// VALIDAR USERNAME
+// ============================
+
+$checkUser =
+    "SELECT username
+FROM user
+WHERE username='$user'";
+
+$resultUser =
+    $conn->query($checkUser);
+
+if ($resultUser->num_rows > 0) {
+
+    header(
+        "Location: " . $redirectError . "?error=user"
+    );
+
+    exit();
+
+}
+
+// ============================
+// INSERTAR
+// ============================
+
+$sql =
+
+    "INSERT INTO user
+(id,username,pass,user_type)
+
+VALUES
+
+('$id','$user','$password','$role')";
 
 if ($conn->query($sql)) {
-    // ÉXITO: Va directo al index
-    header("Location: " . $redirectSuccess);
+
+    header(
+        "Location: " . $redirectSuccess
+    );
+
     exit();
-} else {
-    // ERROR GENÉRICO: Regresa al formulario con el error
-    header("Location: " . $redirectError . "?error=generic");
-    exit();
+
 }
 
+header(
+    "Location: " . $redirectError . "?error=generic"
+);
+
 $conn->close();
+
 ?>

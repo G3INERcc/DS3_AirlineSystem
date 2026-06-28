@@ -1,0 +1,230 @@
+/* ==========================================================================
+   CONFIGURACIÓN GENERAL Y VARIABLES (Estilo Aerolínea Formal)
+   ========================================================================== */
+:root {
+    --primary-color: #4a2c73;       /* Morado institucional corporativo */
+    --primary-hover: #371f58;       /* Morado oscuro para interacciones */
+    --secondary-color: #634294;     /* Morado intermedio */
+    --bg-body: #f8f9fa;             /* Fondo gris claro, limpio */
+    --bg-card: #ffffff;             /* Fondo blanco para contenedores */
+    --text-main: #2b2b2b;           /* Texto principal legible */
+    --text-muted: #6c757d;          /* Texto secundario */
+    --border-color: #e2e8f0;        /* Bordes sutiles */
+    --accent-delete: #dc3545;       /* Rojo sutil para acciones críticas */
+    --accent-delete-hover: #bd2130;
+    --accent-save: #28a745;         /* Verde formal para guardar */
+    --accent-save-hover: #218838;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   HEADER (Identidad Corporativa)
+   ========================================================================== */
+header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+h1 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   BARRA DE BÚSQUEDA
+   ========================================================================== */
+.search-container {
+    background-color: var(--bg-card);
+    padding: 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.search-form {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(99, 66, 148, 0.15);
+}
+
+/* ==========================================================================
+   TABLA DE USUARIOS
+   ========================================================================== */
+.userManagement {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.infoUsers {
+    overflow-x: auto; /* Permite scroll horizontal si la pantalla es muy chica */
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.users-table th {
+    background-color: #f1edf7; /* Fondo morado muy tenue para cabecera */
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.users-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* Filas alternas para mejor lectura visual */
+.users-table tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.users-table tbody tr:hover {
+    background-color: #f5f2f9; /* Feedback sutil al pasar el cursor */
+}
+
+/* Mensaje de no resultados */
+.users-table td[colspan="6"] {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   INPUTS Y SELECTS DENTRO DE LA TABLA
+   ========================================================================== */
+.input-table-id,
+.input-table-user,
+.input-table-pass,
+.select-role {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background-color: #fafafa;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.input-table-id:focus,
+.input-table-user:focus,
+.input-table-pass:focus,
+.select-role:focus {
+    background-color: #ffffff;
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+/* Tamaños fijos aproximados para mantener simetría en la tabla */
+.input-table-id { max-width: 70px; }
+.input-table-user { min-width: 130px; }
+.input-table-pass { min-width: 130px; }
+.select-role { min-width: 130px; }
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+button {
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.1s;
+    font-size: 0.9rem;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Botón Buscar */
+.btn-search {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 0.6rem 1.5rem;
+}
+
+.btn-search:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Botón Guardar */
+.btn-save {
+    background-color: var(--accent-save);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    width: 100%; /* Ocupa el ancho de la celda de forma limpia */
+}
+
+.btn-save:hover {
+    background-color: var(--accent-save-hover);
+}
+
+/* Botón Eliminar */
+.btn-delete {
+    background-color: transparent;
+    color: var(--accent-delete);
+    border: 1px solid var(--accent-delete);
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.btn-delete:hover {
+    background-color: var(--accent-delete);
+    color: #ffffff;
+}
