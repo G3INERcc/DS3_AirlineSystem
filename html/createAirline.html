@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../css/login.css" />
+
+    <title>Crear Aerolínea</title>
+
+    <style>
+
+        .alert-error {
+
+            color: #721c24;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <span>Galei Airlines</span>
+
+    </header>
+
+    <div class="container">
+
+        <form
+            class="form"
+            method="POST"
+            action="../php/createAirline.php">
+
+            <p class="form-title">
+
+                Crear Aerolínea
+
+            </p>
+
+            <div id="mensaje-error" class="alert-error"></div>
+
+            <div class="input-container">
+
+                <input
+                    type="number"
+                    name="code"
+                    placeholder="Código"
+                    required />
+
+            </div>
+
+            <div class="input-container">
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Nombre"
+                    required />
+
+            </div>
+
+            <div class="input-container">
+
+                <input
+                    type="text"
+                    name="country"
+                    placeholder="Centro de operaciones (País)"
+                    required />
+
+            </div>
+
+            <button class="submit" type="submit">
+
+                Crear
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", () => {
+
+            const params = new URLSearchParams(window.location.search);
+
+            const error = params.get("error");
+
+            const box = document.getElementById("mensaje-error");
+
+            if (error === "code") {
+
+                box.innerText = "Ese código ya existe.";
+                box.style.display = "block";
+
+            }
+
+            else if (error === "name") {
+
+                box.innerText = "Ya existe una aerolínea con ese nombre.";
+                box.style.display = "block";
+
+            }
+
+            else if (error === "generic") {
+
+                box.innerText = "No se pudo crear la aerolínea.";
+                box.style.display = "block";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

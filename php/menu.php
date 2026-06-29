@@ -81,8 +81,8 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
                         </li>
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
-                                Gestion de Aereolínea
+                            <a href="../php/airlineManagement.php" class="menu__link menu__link--inside">
+                                Gestion de Aereolíneas
                             </a>
                         </li>
 
