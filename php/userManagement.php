@@ -3,23 +3,50 @@
 session_start();
 include("../php/connection.php");
 
-// Seguridad
-if (
-    !isset($_SESSION['user_type']) ||
-    $_SESSION['user_type'] !== 'administrador'
-) {
-    header("Location: ../index.html");
+
+
+//=========== CREAR USUARIO ===========
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createUser'])) {
+    $newID = $_POST['newID'];
+    $userName = $_POST['userNewName'];
+    $password = $_POST['newPassword'];
+    $role = $_POST['newRole'];
+
+    $checkID = "SELECT id FROM user WHERE id='$newID'";
+
+    $checkUser = "SELECT id FROM user WHERE username='$userName'";
+
+    $resultID = $conn->query($checkID);
+    $resultUser = $conn->query($checkUser);
+
+    if ($resultID->num_rows > 0) {
+        echo "
+        <script>
+            alert('Ese ID ya existe');
+            window.location='" . $_SERVER['PHP_SELF'] . "';
+        </script>";
+        exit();
+    }
+
+    if ($resultUser->num_rows > 0) {
+        echo "
+        <script>
+            alert('Ese usuario ya existe');
+            window.location='" . $_SERVER['PHP_SELF'] . "';
+        </script>";
+        exit();
+    }
+
+    $insert = "INSERT INTO user (id, username, pass, user_type) VALUES ('$newID', '$userName', '$password', '$role')";
+    $conn->query($insert);
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
-// =======================
-// ACTUALIZAR
-// =======================
+// ----------------ACTUALIZAR--------------
 
-if (
-    $_SERVER['REQUEST_METHOD'] === 'POST' &&
-    isset($_POST['updateRole'])
-) {
+if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateRole'])) {
 
     $userOriginalID = $_POST['userOriginalID'];
     $newID = $_POST['newID'];
@@ -27,92 +54,49 @@ if (
     $newPassword = $_POST['newPassword'];
     $newRole = $_POST['newRole'];
 
-    // Validar ID repetido
-    $checkID =
-        "SELECT id FROM user
-        WHERE id='$newID'
-        AND id<>'$userOriginalID'";
+    $checkID = "SELECT id FROM user WHERE id='$newID' AND id<>'$userOriginalID'";
+
+    $checkUser = "SELECT id FROM user WHERE username='$userNewName' AND id<>'$userOriginalID'";
 
     $resultID = $conn->query($checkID);
-
-    // Validar username repetido
-    $checkUser =
-        "SELECT id FROM user
-        WHERE username='$userNewName'
-        AND id<>'$userOriginalID'";
-
     $resultUser = $conn->query($checkUser);
 
-    if (
-        $resultID->num_rows == 0 &&
-        $resultUser->num_rows == 0
-    ) {
-
-        $update =
-            "UPDATE user
-            SET
-                id='$newID',
-                username='$userNewName',
-                pass='$newPassword',
-                user_type='$newRole'
-            WHERE id='$userOriginalID'";
-
+    if ($resultID->num_rows == 0 && $resultUser->num_rows == 0) {
+        $update ="UPDATE user SET id='$newID', username='$userNewName', pass='$newPassword', user_type='$newRole' WHERE id='$userOriginalID'";
         $conn->query($update);
+    } else {
+        echo "
+        <script>
+            alert('ID o usuario repetido');
+            window.location='" . $_SERVER['PHP_SELF'] . "';
+        </script>";
+        exit();
     }
-
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
-// =======================
-// ELIMINAR
-// =======================
+// -----------ELIMINAR-------------
 
-if (
-    $_SERVER['REQUEST_METHOD'] === 'POST' &&
-    isset($_POST['deleteUser'])
-) {
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteUser'])) {
     $id = $_POST['userID'];
-
-    $delete =
-        "DELETE FROM user
-        WHERE id='$id'";
-
+    $delete = "DELETE FROM user WHERE id='$id'";
     $conn->query($delete);
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 
-// =======================
-// BUSCAR
-// =======================
+// -----------BUSCAR-------------
 
 $search = "";
-
-if (
-    isset($_GET['search']) &&
-    !empty($_GET['search'])
-) {
-
+if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = $_GET['search'];
-
-    $query =
-        "SELECT *
-        FROM user
-        WHERE username
-        LIKE '%$search%'";
-
+    $query ="SELECT * FROM user WHERE username LIKE '%$search%'";
 } else {
-
-    $query =
-        "SELECT *
-        FROM user";
+    $query = "SELECT * FROM user";
 }
-
 $result = $conn->query($query);
-
 ?>
 
 <!DOCTYPE html>
@@ -120,203 +104,110 @@ $result = $conn->query($query);
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Gestión de Usuarios</title>
-
     <link rel="stylesheet" href="../css/userManager.css">
-
 </head>
-
 <body>
-
     <header>
-
         <span>Galei Airlines</span>
-
-        <a href="../php/menu.php">
-            <img src="../assets/2.svg" alt="">
-        </a>
-
+        <a href="../php/menu.php"><img src="../assets/2.svg" alt=""></a>
     </header>
 
     <main class="container">
-
         <h1>Gestión de Usuarios</h1>
-
         <div class="search-container">
-
             <form method="GET" class="search-form">
-
                 <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" class="search-input">
-
-                <button type="submit" class="btn-search">
-
-                    Buscar
-
-                </button>
-
-                <button type="button" class="btn-search" onclick="window.location.href='../html/createUserAdm.html'">
-
-                    Crear Usuario
-
-                </button>
-
+                <button type="submit" class="btn-search">Buscar</button>
             </form>
-
         </div>
 
         <section class="userManagement">
-
             <div class="infoUsers">
-
                 <table class="users-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Rol</th>
+                        <th>Guardar</th>
+                        <th>Eliminar</th>
+                    </tr>
 
-                    <thead>
+                    <tr>
+                        <form method="POST" onsubmit="return confirm('¿Crear usuario?');">
+                                <td><input type="number" name="newID" required placeholder="ID" class="input-table-id"></td>
+                                <td><input type="text" name="userNewName" required placeholder="Usuario" class="input-table-user"></td>
+                                <td><input type="text" name="newPassword" required placeholder="Contraseña" class="input-table-pass"> </td>
 
-                        <tr>
+                                <td>
+                                    <select name="newRole" class="select-role"> 
+                                        <option value="colaborador">Colaborador</option>
+                                        <option value="administrador">Administrador</option>
+                                    </select>
+                                </td>
 
-                            <th>ID</th>
-                            <th>Usuario</th>
-                            <th>Contraseña</th>
-                            <th>Rol</th>
-                            <th>Guardar</th>
-                            <th>Eliminar</th>
+                                <td>
+                                    <button type="submit" name="createUser" class="btn-save">Crear</button>
+                                </td>
 
+                                <td>
+                                    <button type="reset"class="btn-delete">Limpiar</button>
+                                </td>
+                            </form>
                         </tr>
-
-                    </thead>
-
-                    <tbody>
-
                         <?php
-
                         if ($result && $result->num_rows > 0) {
-
                             while ($row = $result->fetch_assoc()) {
-
                                 ?>
-
                                 <tr>
-
                                     <form method="POST" onsubmit="return confirm('¿Guardar cambios?');">
-
                                         <input type="hidden" name="userOriginalID" value="<?= $row['id'] ?>">
+                                        <td><input type="number" name="newID" value="<?= $row['id'] ?>" class="input-table-id"> </td>
 
                                         <td>
-
-                                            <input type="number" name="newID" value="<?= $row['id'] ?>" class="input-table-id">
-
+                                            <input type="text" name="userNewName" value="<?= htmlspecialchars($row['username']) ?>" class="input-table-user">
                                         </td>
 
                                         <td>
-
-                                            <input type="text" name="userNewName"
-                                                value="<?= htmlspecialchars($row['username']) ?>" class="input-table-user">
-
+                                            <input type="text" name="newPassword" value="<?= htmlspecialchars($row['pass']) ?>"class="input-table-pass">
                                         </td>
 
                                         <td>
-
-                                            <input type="text" name="newPassword"
-                                                value="<?= htmlspecialchars($row['pass']) ?>" class="input-table-pass">
-
-                                        </td>
-
-                                        <td>
-
                                             <select name="newRole" class="select-role">
-
-                                                <option value="administrador" <?= $row['user_type'] == "administrador"
-                                                    ? "selected"
-                                                    : "" ?>>
-
-                                                    Administrador
-
-                                                </option>
-
-                                                <option value="colaborador" <?= $row['user_type'] == "colaborador"
-                                                    ? "selected"
-                                                    : "" ?>>
-
-                                                    Colaborador
-
-                                                </option>
-
+                                                <option value="administrador" <?= $row['user_type'] == "administrador" ? "selected" : "" ?>> Administrador</option>
+                                                <option value="colaborador" <?= $row['user_type'] == "colaborador" ? "selected" : "" ?>> Colaborador</option>
                                             </select>
-
                                         </td>
 
                                         <td>
-
-                                            <button type="submit" name="updateRole" class="btn-save">
-
-                                                Guardar
-
-                                            </button>
-
+                                            <button type="submit" name="updateRole" class="btn-save"> Guardar </button>
                                         </td>
-
                                     </form>
 
                                     <td>
-
                                         <form method="POST" onsubmit="return confirm('¿Eliminar usuario?');">
-
                                             <input type="hidden" name="userID" value="<?= $row['id'] ?>">
-
-                                            <button type="submit" name="deleteUser" class="btn-delete">
-
-                                                Eliminar
-
-                                            </button>
-
+                                            <button type="submit" name="deleteUser" class="btn-delete">Eliminar</button>
                                         </form>
-
                                     </td>
-
                                 </tr>
-
                                 <?php
-
                             }
-
                         } else {
-
                             ?>
-
                             <tr>
-
-                                <td colspan="6">
-
-                                    No se encontraron usuarios
-
-                                </td>
-
+                                <td colspan="6"> No se encontraron usuarios</td>
                             </tr>
-
                             <?php
-
                         }
-
                         $conn->close();
-
                         ?>
-
-                    </tbody>
-
                 </table>
-
             </div>
-
         </section>
-
     </main>
-
 </body>
-
 </html>
-```
