@@ -1,0 +1,245 @@
+/* ==========================================================================
+   ESTILOS BASE (Galei Airlines - Gestión de Flota)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* Fondo ligeramente más oscuro para resaltar las tarjetas */
+    color: #1f2937;
+    padding: 40px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #371f58;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h1::after {
+    content: "• Flota Activa";
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   BARRA DE BÚSQUEDA INTEGRADA DE LUJO
+   ========================================================================== */
+form[method="GET"] {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+form[method="GET"] input {
+    flex: 1;
+    padding: 12px 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+}
+
+form[method="GET"] input:focus {
+    background-color: #ffffff;
+    border-color: #371f58;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(55, 31, 88, 0.1);
+}
+
+form[method="GET"] button {
+    background-color: #371f58;
+    color: #ffffff;
+    border: none;
+    padding: 0 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form[method="GET"] button:hover {
+    background-color: #26153e;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DE TABLA ESTILO "CAMPOS ACTIVOS"
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* Crea una separación entre filas simulando tarjetas individuales */
+    margin-top: 10px;
+}
+
+th {
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 16px;
+    text-align: left;
+}
+
+/* Filas como contenedores independientes */
+table tr:not(:first-child) {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+table tr:not(:first-child):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+td {
+    padding: 16px;
+    border-top: 1px solid #f3f4f6;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+/* Redondear las esquinas de cada fila simulando bloques independientes */
+td:first-child {
+    border-left: 1px solid #f3f4f6;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+td:last-child {
+    border-right: 1px solid #f3f4f6;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Fila de creación con indicador lateral de color */
+table tr:nth-of-type(2) {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(55, 31, 88, 0.15);
+}
+
+table tr:nth-of-type(2) td:first-child {
+    border-left: 4px solid #371f58;
+}
+
+/* ==========================================================================
+   FORMULARIOS ELEMENTOS (Inputs y Selects incorporados)
+   ========================================================================== */
+table input, 
+table select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1f2937;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+}
+
+/* Estilo específico para los menús desplegables (Selects) */
+table select {
+    cursor: pointer;
+    appearance: none; /* Elimina la flecha nativa fea */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%234b5563'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 32px;
+}
+
+table input:focus, 
+table select:focus {
+    background-color: #ffffff;
+    border-color: #371f58;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(55, 31, 88, 0.1);
+}
+
+/* Bloquear input de matrícula simulando llave primaria fija si es necesario */
+table input[name="registration_mark"] {
+    font-family: monospace;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   BOTONERÍA CORPORATIVA DE OPERACIONES
+   ========================================================================== */
+table button {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+/* Crear (Fila Superior) */
+table button[name="createAirplane"] {
+    background-color: #371f58;
+    color: #ffffff;
+}
+
+table button[name="createAirplane"]:hover {
+    background-color: #211037;
+}
+
+/* Limpiar formulario */
+table button[type="reset"] {
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
+
+table button[type="reset"]:hover {
+    background-color: #d1d5db;
+}
+
+/* Guardar cambios (Fila existente) */
+table button[name="updateAirplane"] {
+    background-color: #f3f4f6;
+    color: #371f58;
+    border: 1px solid rgba(55, 31, 88, 0.2);
+}
+
+table button[name="updateAirplane"]:hover {
+    background-color: rgba(55, 31, 88, 0.05);
+    border-color: #371f58;
+}
+
+/* Eliminar registro */
+table button[name="deleteAirplane"] {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+table button[name="deleteAirplane"]:hover {
+    background-color: #dc2626;
+    color: #ffffff;
+}

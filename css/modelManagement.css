@@ -1,0 +1,241 @@
+/* ==========================================================================
+   ESTILOS GENERALES (Galei Airlines - Configuración de Modelos)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f6f8fa;
+    color: #2d3748;
+    padding: 40px 20px;
+    max-width: 1400px; /* Un poco más ancho por la cantidad de columnas */
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #371f58;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Indicador superior estilo badge de aviación */
+h1::after {
+    content: "Especificaciones Técnicas";
+    font-size: 11px;
+    font-weight: 600;
+    background-color: rgba(55, 31, 88, 0.1);
+    color: #371f58;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   BARRA DE BÚSQUEDA MINIMALISTA
+   ========================================================================== */
+form[method="GET"] {
+    display: flex;
+    max-width: 450px;
+    margin-bottom: 30px;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 30px; /* Estilo píldora para variar con los anteriores */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+}
+
+form[method="GET"] input {
+    flex: 1;
+    border: none;
+    padding: 8px 18px;
+    font-size: 14px;
+    background: transparent;
+    outline: none;
+}
+
+form[method="GET"] button {
+    background-color: #371f58;
+    color: #ffffff;
+    border: none;
+    padding: 8px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+form[method="GET"] button:hover {
+    background-color: #24133b;
+}
+
+/* ==========================================================================
+   TABLA FLUIDA CON DIFERENCIACIÓN DE CAPACIDADES
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+th {
+    background-color: #ffffff;
+    color: #718096;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 18px 15px;
+    text-align: left;
+    border-bottom: 2px solid #edf2f7;
+}
+
+/* Forzar que las columnas de capacidad tengan un ancho armónico */
+th:nth-child(4), th:nth-child(5), th:nth-child(6) {
+    color: #371f58; /* Resaltar que estas columnas son métricas de cabina */
+}
+
+td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #edf2f7;
+    vertical-align: middle;
+}
+
+/* Animación sutil al pasar sobre las filas de datos */
+table tr:hover:not(:first-child):not(:nth-of-type(2)) {
+    background-color: #fcfdff;
+}
+
+/* ==========================================================================
+   FILA DE REGISTRO (DISEÑO FLOTANTE)
+   ========================================================================== */
+table tr:nth-of-type(2) {
+    background-color: #f7fafc;
+    border-bottom: 2px dashed #371f58; /* Línea discontinua estilo cupón/boleto */
+}
+
+/* ==========================================================================
+   CAMPOS DE TEXTO Y DESPLEGABLES (INPUTS & SELECTS)
+   ========================================================================== */
+table input, 
+table select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #2d3748;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+table input:focus, 
+table select:focus {
+    border-color: #371f58;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(55, 31, 88, 0.12);
+}
+
+/* --- Variación Clave: Entradas Numéricas (Distribución de Asientos) --- */
+table input[type="number"],
+table input[name="business_cant"],
+table input[name="turist_cant"],
+table input[name="economy_cant"] {
+    font-weight: 600;
+    text-align: center;
+    background-color: #fffaf0; /* Color ligeramente cálido para diferenciar del texto */
+    border-color: #feebc8;
+    color: #c05621;
+}
+
+table input[name="business_cant"]:focus,
+table input[name="turist_cant"]:focus,
+table input[name="economy_cant"]:focus {
+    border-color: #371f58;
+    background-color: #ffffff;
+}
+
+/* Selector estilizado */
+table select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23718096'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 14px;
+    padding-right: 24px;
+}
+
+/* ==========================================================================
+   BOTONES DE ACCIÓN (ESTILO ACCESIBLE)
+   ========================================================================== */
+table button {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+/* Crear */
+table button[name="createModel"] {
+    background-color: #371f58;
+    color: #ffffff;
+}
+
+table button[name="createModel"]:hover {
+    background-color: #24133b;
+}
+
+/* Limpiar */
+table button[type="reset"] {
+    background-color: #e2e8f0;
+    color: #4a5568;
+}
+
+table button[type="reset"]:hover {
+    background-color: #cbd5e0;
+}
+
+/* Guardar Cambios (Estilo Texto Inteligente) */
+table button[name="updateModel"] {
+    background-color: transparent;
+    color: #371f58;
+    border: 1px dashed #371f58;
+}
+
+table button[name="updateModel"]:hover {
+    background-color: #371f58;
+    color: #ffffff;
+    border-style: solid;
+}
+
+/* Eliminar */
+table button[name="deleteModel"] {
+    background-color: transparent;
+    color: #e53e3e;
+    border: 1px solid transparent;
+}
+
+table button[name="deleteModel"]:hover {
+    background-color: #fff5f5;
+    border-color: #fed7d7;
+    border-radius: 6px;
+}

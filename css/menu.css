@@ -84,7 +84,7 @@ body {
 #title {
     text-align: center;
     margin-top: 60px;
-    color: #333;
+    color: #ffffff;
     font-size: 2rem;
 }
 .info {
@@ -129,6 +129,54 @@ html, body {
 .footer {
     background-color: #000;
     color: #fff;
+    padding: 40px 10%; /* El 10% de los lados crea un colchón limpio a la izquierda */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Contenedor principal alineado por defecto a la izquierda */
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Fuerza todo el contenido a la izquierda */
+    gap: 15px;
+    width: 100%;
+}
+
+.footer__content h6 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Estilo para la descripción de la aerolínea */
+.footer__description {
+    max-width: 700px; /* Evita que el texto se extienda infinitamente a la derecha */
+    line-height: 1.6;
+    margin: 0 0 10px 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* Contenedor horizontal para Red Social + Nombre */
+.footer__dev {
+    display: flex;
+    align-items: center; /* Alineación vertical perfecta del ícono con el texto */
+    gap: 10px; /* Espacio exacto entre el logo de IG y el nombre */
+}
+
+.footer__dev a {
+    display: flex;
+    align-items: center;
+}
+
+/* Derechos reservados centrados abajo */
+.footer__copyright {
     text-align: center;
-    padding: 20px;
+    width: 100%;
+    margin: 20px 0 0 0;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    border-top: 1px solid #222; /* Línea sutil de separación */
+    padding-top: 20px;
 }

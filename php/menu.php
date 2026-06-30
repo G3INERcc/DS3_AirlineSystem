@@ -63,19 +63,19 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
                     <ul class="menu__nesting">
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
+                            <a href="../php/brandManagement.php" class="menu__link menu__link--inside">
                                 Gestion de Marcas
                             </a>
                         </li>
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
+                            <a href="../php/modelManagement.php" class="menu__link menu__link--inside">
                                 Gestion de Modelos
                             </a>
                         </li>
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
+                            <a href="../php/airplaneManagement.php" class="menu__link menu__link--inside">
                                 Gestion de Aviones
                             </a>
                         </li>
@@ -180,10 +180,36 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
 
     </section>
 
+    <br><br><br><br><br><br><br><br><br><br> 
+    <br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br>
 
+
     <footer class="footer">
-        <p>
+        <div class="footer__content">
+            <h6>Sobre Galei Airlines</h6>
+            <p class="footer__description">
+                Somos la aerolínea de ultra bajo costo que conecta tus destinos favoritos con la mayor comodidad y los
+                mejores precios. Viaja con nosotros y descubre una nueva forma de volar sin pagar de más.
+            </p>
+
+            <div class="footer__dev">
+                <a href="https://www.instagram.com/galibs_?igsh=bWQzd21jZG1mYjBr" target="_blank">
+                    <img src="../assets/ig.svg" alt="Instagram" height="24">
+                </a>
+                <h6>Galilea Blandón Segura</h6>
+            </div>
+
+            <div class="footer__dev">
+                <a href="https://www.instagram.com/geiner.cc?igsh=NGw4dThyODhpOHNl" target="_blank">
+                    <img src="../assets/ig.svg" alt="Instagram" height="24">
+                </a>
+                <h6>Geiner Caballari Calderón</h6>
+            </div>
+        </div>
+
+        <!-- El derecho de autor queda fuera para centrarlo abajo de forma independiente -->
+        <p class="footer__copyright">
             © 2026 Mi sitio web. Todos los derechos reservados.
         </p>
     </footer>
