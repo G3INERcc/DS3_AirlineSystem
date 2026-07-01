@@ -141,7 +141,7 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
                             </li>
 
                             <li class="menu__inside">
-                                <a href="#" class="menu__link menu__link--inside">
+                                <a href="../php/flightInquiry.php" class="menu__link menu__link--inside">
                                     Consultas de vuelo
                                 </a>
                             </li>
