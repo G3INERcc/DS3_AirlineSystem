@@ -34,8 +34,7 @@ if (isset($_GET['num_flight']) &&!empty($_GET['num_flight'])) {
 }
 
 $flights =
-    $conn->query(
-        "SELECT num_flight FROM flight");
+    $conn->query("SELECT num_flight FROM flight");
 ?>
 
 <!DOCTYPE html>
