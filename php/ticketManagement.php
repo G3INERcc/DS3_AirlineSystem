@@ -28,7 +28,7 @@ if (isset($_GET['edit'])) {
 
 // ========= FUNCIÓN PARA VALIDAR DISPONIBILIDAD =========
 
-function validateAvailability($conn, $numFlight, $class, $oldTicket = null)
+function validateAvailability(mysqli $conn, $numFlight, $class, $oldTicket = null)
 {
     $capacityField = "";
 
@@ -72,7 +72,7 @@ function validateAvailability($conn, $numFlight, $class, $oldTicket = null)
 
 // ========= FUNCIÓN PARA OBTENER MONTO =========
 
-function getAmount($conn, $numFlight, $class)
+function getAmount(mysqli $conn, $numFlight, $class)
 {
     $priceField = "";
 
