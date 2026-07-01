@@ -16,7 +16,7 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <title>Menú</title>
     <link rel="stylesheet" href="../css/menu.css">
 </head>
 
@@ -58,49 +58,49 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
 
                 <li class="menu__item menu__item--show">
 
-                    <a href="#" class="menu__link">Gestion</a>
+                    <a href="#" class="menu__link">Gestión</a>
 
                     <ul class="menu__nesting">
 
                         <li class="menu__inside">
                             <a href="../php/brandManagement.php" class="menu__link menu__link--inside">
-                                Gestion de Marcas
+                                Gestión de Marcas
                             </a>
                         </li>
 
                         <li class="menu__inside">
                             <a href="../php/modelManagement.php" class="menu__link menu__link--inside">
-                                Gestion de Modelos
+                                Gestión de Modelos
                             </a>
                         </li>
 
                         <li class="menu__inside">
                             <a href="../php/airplaneManagement.php" class="menu__link menu__link--inside">
-                                Gestion de Aviones
+                                Gestión de Aviones
                             </a>
                         </li>
 
                         <li class="menu__inside">
                             <a href="../php/airlineManagement.php" class="menu__link menu__link--inside">
-                                Gestion de Aereolíneas
+                                Gestión de Aerolíneas
                             </a>
                         </li>
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
-                                Gestion de Vuelos
+                            <a href="../php/flightManagement.php" class="menu__link menu__link--inside">
+                                Gestión de Vuelos
                             </a>
                         </li>
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
-                                Gestion de Pasajeros
+                            <a href="../php/passengerManagement.php" class="menu__link menu__link--inside">
+                                Gestión de Pasajeros
                             </a>
                         </li>
 
                         <li class="menu__inside">
-                            <a href="#" class="menu__link menu__link--inside">
-                                Gestion de Tiquetes
+                            <a href="../php/ticketManagement.php" class="menu__link menu__link--inside">
+                                Gestión de Tiquetes
                             </a>
                         </li>
                     </ul>
@@ -130,19 +130,19 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
 
                             <li class="menu__inside">
                                 <a href="../php/userManagement.php" class="menu__link menu__link--inside">
-                                    Gestion de Usuarios
+                                    Gestión de Usuarios
                                 </a>
                             </li>
 
                             <li class="menu__inside">
                                 <a href="#" class="menu__link menu__link--inside">
-                                    Historial de tickets
+                                    Historial de Tiquetes
                                 </a>
                             </li>
 
                             <li class="menu__inside">
                                 <a href="#" class="menu__link menu__link--inside">
-                                    Consultas de vuelo
+                                    Consultas de Vuelos
                                 </a>
                             </li>
 
@@ -150,7 +150,7 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
 
                         <li class="menu__inside">
                             <a href="#" id="openManual" class="menu__link menu__link--inside">
-                                Manual
+                                Manual de Usuario
                             </a>
                         </li>
 
@@ -173,7 +173,7 @@ $rol_actual = $_SESSION['user_type'] ?? 'colaborador';
 
         <div class="slide_img">
             <h1 id="title">
-                Bienvenido
+                Bienvenido/a
                 <?php echo $_SESSION['user']; ?>
             </h1>
         </div>
